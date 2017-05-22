@@ -425,23 +425,26 @@
 
 <h5>Code:</h5>
 <pre><code>$('#file').upyunForm({
-	ready:function(up){
-		$('#message').append("\r\n准备上传");
-		up.upload(); //开始上传
-	},
-	uploadBefore:function(obj){
-		$('#message').append("\r\n上传中");
-	},
-	success:function(res){
-		$('#message').append("\r\n上传成功:"+res.url);
-	},
-	error:function(res){
-		$('#message').append("\r\n上传失败："+JSON.stringify(res));
-	},
-	sign:function(res){
-		$('#message').append("Signature:"+res.signature);
-		$('#message').append("\r\nPolicy:"+res.policy);
-	}
+  signUrl:"", //自定义签名地址，默认使用upyuntoken.php
+  ready:function(up){
+    $('#message').append("\r\n准备上传");
+    //compress 是否开启压缩,width,height 压缩尺寸大小
+    var param = {compress:1,width:200,height:200};
+    up.upload(param); //开始上传
+  },
+  uploadBefore:function(obj){
+    $('#message').append("\r\n上传中");
+  },
+  success:function(res){
+    $('#message').append("\r\n上传成功:"+res.url);
+  },
+  error:function(res){
+    $('#message').append("\r\n上传失败："+JSON.stringify(res));
+  },
+  sign:function(res){
+    $('#message').append("Signature:"+res.signature);
+    $('#message').append("\r\nPolicy:"+res.policy);
+  }
 });
 </code></pre>
 
@@ -461,37 +464,37 @@
 <script src="./ueditorUpload.js"></script>
 <script>
 $('#file').upyunForm({
-	ready:function(up){
-		$('#message').append("\r\n准备上传");
-		up.upload();
-	},
-	uploadBefore:function(obj){
-		$('#message').append("\r\n上传中");
-	},
-	success:function(res){
-		$('#message').append("\r\n上传成功:"+res.url);
-	},
-	error:function(res){
-		$('#message').append("\r\n上传失败："+JSON.stringify(res));
-	},
-	sign:function(res){
-		$('#message').append("Signature:"+res.signature);
-		$('#message').append("\r\nPolicy:"+res.policy);
-	}
+  ready:function(up){
+    $('#message').append("\r\n准备上传");
+    up.upload({compress:1,width:200,height:200});
+  },
+  uploadBefore:function(obj){
+    $('#message').append("\r\n上传中");
+  },
+  success:function(res){
+    $('#message').append("\r\n上传成功:"+res.url);
+  },
+  error:function(res){
+    $('#message').append("\r\n上传失败："+JSON.stringify(res));
+  },
+  sign:function(res){
+    $('#message').append("Signature:"+res.signature);
+    $('#message').append("\r\nPolicy:"+res.policy);
+  }
 });
 
 //UEditor
 UE.getEditor('myEditor',{
-	//这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-	toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
-	//focus时自动清空初始化时的内容
-	autoClearinitialContent:true,
-	//关闭字数统计
-	wordCount:false,
-	//关闭elementPath
-	elementPathEnabled:false,
-	//默认的编辑区域高度
-	initialFrameHeight:300,
+  //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+  toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+  //focus时自动清空初始化时的内容
+  autoClearinitialContent:true,
+  //关闭字数统计
+  wordCount:false,
+  //关闭elementPath
+  elementPathEnabled:false,
+  //默认的编辑区域高度
+  initialFrameHeight:300,
 });
 </script>
 </body>
