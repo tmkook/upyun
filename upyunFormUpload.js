@@ -71,8 +71,8 @@ UpyunFormUpload.prototype = {
 	                that.file = that.imgCompressToBuffer(img,imw,imh);
 	                console.log(that.file.size);
 	                img = null;
-	                cb && cb();
             	}
+            	cb && cb();
             }
         };
 		return this;
@@ -163,8 +163,8 @@ UpyunFormUpload.prototype = {
 	    console.log('压缩后：' + base64.length);
 	    console.log('压缩率：' + ~~(100 * (initSize - base64.length) / initSize) + "%");
 	    console.log(canvas.width,canvas.height);
-	    document.body.appendChild(img);
-	    document.body.appendChild(canvas);
+	    // document.body.appendChild(img);
+	    // document.body.appendChild(canvas);
 
         var code = window.atob(base64.split(",")[1]);
         var aBuffer = new window.ArrayBuffer(code.length);
